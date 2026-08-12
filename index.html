@@ -1,0 +1,732 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>شركة الصدارة لتجارة السيارات</title>
+  <style>
+    :root {
+      --bg: #f7f2f6;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --text: #2a1124;
+      --muted: #6e5363;
+      --blue: #08457a;
+      --blue-2: #0f63ad;
+      --blue-3: #1f86dd;
+      --line: rgba(8, 69, 122, 0.14);
+      --shadow: 0 16px 44px rgba(64, 17, 48, 0.12);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(91, 15, 139, 0.09), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(171, 14, 61, 0.10), transparent 24%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+
+    .app {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 14px 14px 28px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(8, 69, 122, 0.96), rgba(15, 99, 173, 0.94));
+      color: #fff;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+      filter: blur(8px);
+    }
+
+    .hero::before {
+      width: 190px;
+      height: 190px;
+      top: -90px;
+      left: -80px;
+    }
+
+    .hero::after {
+      width: 140px;
+      height: 140px;
+      bottom: -55px;
+      right: -35px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.18));
+      border-radius: 50%;
+      background: transparent;
+      padding: 0;
+      border: 4px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .title {
+      margin: 4px 0 0;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.90);
+      line-height: 1.8;
+      font-size: 14px;
+      max-width: 54ch;
+    }
+
+    .note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .nav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 4px 2px 10px;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar { display: none; }
+
+    .nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(65, 19, 48, 0.06);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(12, 90, 158, 0.20);
+      outline: none;
+    }
+
+    .section {
+      margin-top: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid rgba(91, 15, 139, 0.10);
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 78px;
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      background: var(--surface-strong);
+      border: 1px solid rgba(91, 15, 139, 0.12);
+      box-shadow: 0 10px 24px rgba(54, 16, 43, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(91, 15, 139, 0.03), rgba(171, 14, 61, 0.05));
+      pointer-events: none;
+    }
+
+    .item:hover,
+    .item:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(54, 16, 43, 0.10);
+      border-color: rgba(12, 90, 158, 0.24);
+      outline: none;
+    }
+
+    .item-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      font-size: 22px;
+      flex: 0 0 auto;
+      box-shadow: 0 12px 22px rgba(12, 90, 158, 0.18);
+    }
+
+    .badge.whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      box-shadow: 0 12px 22px rgba(18, 140, 126, 0.20);
+    }
+
+    .badge.facebook {
+      background: linear-gradient(135deg, #1877f2, #0f5ec1);
+      box-shadow: 0 12px 22px rgba(24, 119, 242, 0.20);
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .badge svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+      fill: currentColor;
+    }
+
+    .badge img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .item-text {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .item-text strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .item-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .item-text a {
+      color: var(--blue-2);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .item-text a:hover,
+    .item-text a:focus-visible {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .accordion {
+      padding: 0;
+    }
+
+    .accordion > summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .accordion > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 14px 12px;
+      min-height: 92px;
+      text-align: center;
+    }
+
+    .accordion-body {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(91, 15, 139, 0.10);
+      padding: 12px 14px 14px;
+      background: transparent;
+    }
+
+    .accordion-meta {
+      display: grid;
+      gap: 8px;
+      text-align: right;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .meta-row strong {
+      color: var(--text);
+      font-size: 13px;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .meta-row span {
+      text-align: left;
+      flex: 1 1 auto;
+    }
+
+    .meta-row .centered {
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+
+    .accordion-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    #misrata-gallery .accordion-actions {
+      justify-content: center;
+    }
+
+    .accordion-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .btn-gallery {
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(12, 90, 158, 0.16);
+    }
+
+    .btn-call {
+      background: #edf5fc;
+      color: var(--blue);
+      border: 1px solid rgba(12, 90, 158, 0.10);
+    }
+
+    .chev {
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 900;
+      transition: transform 0.2s ease;
+      flex: 0 0 auto;
+    }
+
+    .accordion[open] .chev {
+      transform: rotate(90deg);
+    }
+
+    .arrow {
+      position: relative;
+      z-index: 1;
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 900;
+      flex: 0 0 auto;
+      line-height: 1;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .contact {
+      background: var(--surface-strong);
+      border: 1px solid rgba(91, 15, 139, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(54, 16, 43, 0.05);
+    }
+
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .contact strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .contact span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      min-height: 44px;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      box-shadow: 0 12px 24px rgba(12, 90, 158, 0.18);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: #eef6fd;
+      border: 1px solid rgba(12, 90, 158, 0.10);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      padding: 18px 6px 6px;
+    }
+
+    @media (min-width: 760px) {
+      .app {
+        width: min(100%, 860px);
+        padding: 20px 16px 34px;
+      }
+
+      .hero {
+        padding: 18px 18px 14px;
+      }
+
+      .title {
+        font-size: 24px;
+      }
+
+      .logo {
+        width: 200px;
+        height: 200px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .section-head h2 {
+        font-size: 20px;
+      }
+
+      .item-text span {
+        max-width: 540px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="logo-wrap">
+          <img class="logo" src="LOGO.jpeg" alt="شعار الشركة" />
+        </div>
+        <div class="note">شركة الصدارة لتجارة السيارات</div>
+        <h1 class="title">الصدارة في الاختيار،والثقة في القرار</h1>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>البطاقات الرئيسية</h2>
+      </div>
+      <div class="list">
+        <details class="item accordion" id="korea-image">
+          <summary>
+            <div class="accordion-head">
+              <div class="item-left">
+                <div class="badge">🏢</div>
+                <div class="item-text">
+                  <strong>فرع كوريا</strong>
+                  <span>اضغط لعرض الموقع ورقم الهاتف والصور</span>
+                </div>
+              </div>
+              <div class="chev">‹</div>
+            </div>
+          </summary>
+          <div class="accordion-body">
+            <div class="accordion-meta">
+              <div class="meta-row">
+                <strong>الموقع</strong>
+                <span class="centered">كوريا</span>
+              </div>
+              <div class="meta-row">
+                <strong>رقم الهاتف</strong>
+                <span><a href="https://wa.me/821095744144" target="_blank" rel="noopener noreferrer">+82 10-9574-4144</a></span>
+              </div>
+            </div>
+            <div class="accordion-actions">
+              <a class="btn-gallery" href="gallery.html?set=korea" target="_blank" rel="noopener noreferrer">عرض الصور</a>
+              <a class="btn-call" href="https://wa.me/821095744144" target="_blank" rel="noopener noreferrer">واتس اب</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="item accordion" id="tagura-gallery">
+          <summary>
+            <div class="accordion-head">
+              <div class="item-left">
+                <div class="badge">📸</div>
+                <div class="item-text">
+                  <strong>فرع تاجوراء</strong>
+                  <span>اضغط لعرض الموقع وأرقام الهاتف والخرائط</span>
+                </div>
+              </div>
+              <div class="chev">‹</div>
+            </div>
+          </summary>
+          <div class="accordion-body">
+            <div class="accordion-meta">
+              <div class="meta-row">
+                <strong>الموقع</strong>
+                <span class="centered">تاجوراء البيفي</span>
+              </div>
+              <div class="meta-row">
+                <strong>رقم الهاتف</strong>
+                <span>
+                  <a href="https://wa.me/218945888088" target="_blank" rel="noopener noreferrer">0945888088</a>
+                  &nbsp;|&nbsp;
+                  <a href="https://wa.me/218944999099" target="_blank" rel="noopener noreferrer">0944999099</a>
+                </span>
+              </div>
+              <div class="meta-row">
+                <strong>الموقع على الخرائط</strong>
+                <span><a href="https://maps.app.goo.gl/fPiiJLHnTQx3fECz9" target="_blank" rel="noopener noreferrer">فتح الخرائط</a></span>
+              </div>
+            </div>
+            <div class="accordion-actions">
+              <a class="btn-gallery" href="gallery.html?set=tajoura" target="_blank" rel="noopener noreferrer">عرض الصور</a>
+              <a class="btn-call" href="https://maps.app.goo.gl/fPiiJLHnTQx3fECz9" target="_blank" rel="noopener noreferrer">الخرائط</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="item accordion" id="misrata-gallery">
+          <summary>
+            <div class="accordion-head">
+              <div class="item-left">
+                <div class="badge">🖼</div>
+                <div class="item-text">
+                  <strong>فرع مصراته</strong>
+                  <span>اضغط لعرض الموقع وأرقام الهاتف والصور</span>
+                </div>
+              </div>
+              <div class="chev">‹</div>
+            </div>
+          </summary>
+          <div class="accordion-body">
+            <div class="accordion-meta">
+              <div class="meta-row">
+                <strong>الموقع</strong>
+                <span>مصراتة حضائر الفلك المشحون</span>
+              </div>
+              <div class="meta-row">
+                <strong>رقم الهاتف</strong>
+                <span>
+                  <a href="https://wa.me/218914510803" target="_blank" rel="noopener noreferrer">0914510803</a>
+                  &nbsp;|&nbsp;
+                  <a href="https://wa.me/218918710856" target="_blank" rel="noopener noreferrer">0918710856</a>
+                </span>
+              </div>
+            </div>
+            <div class="accordion-actions">
+              <a class="btn-gallery" href="gallery.html?set=misrata" target="_blank" rel="noopener noreferrer">عرض الصور</a>
+            </div>
+          </div>
+        </details>
+
+        <a class="item" id="korea-license" href="gallery.html?set=comp" target="_blank" rel="noopener noreferrer">
+          <div class="item-left">
+            <div class="badge">📄</div>
+            <div class="item-text">
+              <strong>صورة رخصة الشركة في كوريا</strong>
+              <span>رخصة الشركة أو مستند الترخيص الخاص بفرع كوريا</span>
+            </div>
+          </div>
+          <div class="arrow">‹</div>
+        </a>
+
+        <a class="item" id="facebook-page" href="https://www.facebook.com/share/1diwUUMegp/" target="_blank" rel="noopener noreferrer">
+          <div class="item-left">
+            <div class="badge facebook" aria-hidden="true">f</div>
+            <div class="item-text">
+              <strong>صفحتنا على الفيس بوك</strong>
+              <span>تابعنا عبر الصفحة الرسمية على فيسبوك</span>
+            </div>
+          </div>
+          <div class="arrow">‹</div>
+        </a>
+
+      </div>
+    </section>
+
+    <div class="footer">
+      شركة الصدارة لتجارة السيارات<br>
+      الأمانة والمصداقية شعارنا<br>
+      © 2026 ALSADARA FOR CAR TRADE
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("click", async (event) => {
+      const btn = event.target.closest("[data-copy]");
+      if (!btn) return;
+
+      const text = btn.getAttribute("data-copy");
+      try {
+        await navigator.clipboard.writeText(text);
+        const prev = btn.textContent;
+        btn.textContent = "تم النسخ";
+        setTimeout(() => (btn.textContent = prev), 1100);
+      } catch {
+        alert("تعذر نسخ الرقم، انسخه يدويًا: " + text);
+      }
+    });
+  </script>
+</body>
+</html>
+
+

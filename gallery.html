@@ -1,0 +1,488 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>المعرض</title>
+  <style>
+    :root {
+      --bg: #f3f8fd;
+      --surface: rgba(255, 255, 255, 0.92);
+      --text: #14314f;
+      --muted: #5d738c;
+      --blue: #08457a;
+      --blue-2: #0f63ad;
+      --blue-3: #1f86dd;
+      --line: rgba(8, 69, 122, 0.14);
+      --shadow: 0 18px 50px rgba(17, 47, 83, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(12, 90, 158, 0.12), transparent 24%),
+        radial-gradient(circle at top right, rgba(46, 160, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+
+    .app {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      padding: 14px 14px 24px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(8, 69, 122, 0.96), rgba(15, 99, 173, 0.96));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.5);
+      flex: 0 0 auto;
+      background: #fff;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 4px;
+    }
+
+    .back {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero {
+      margin-top: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-head {
+      padding: 16px 16px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(12, 90, 158, 0.10);
+    }
+
+    .hero-head h1 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .hero-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .viewer {
+      position: relative;
+      background: linear-gradient(180deg, #0f2238, #18324d);
+      padding: 12px;
+    }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .frame img {
+      width: 100%;
+      height: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      display: block;
+      background: #07111c;
+    }
+
+    .counter {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding: 12px 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      min-height: 44px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      box-shadow: 0 12px 24px rgba(12, 90, 158, 0.18);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: #edf5fc;
+      border: 1px solid rgba(12, 90, 158, 0.10);
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 14px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      background: #fff;
+    }
+
+    .thumbs::-webkit-scrollbar { display: none; }
+
+    .thumb {
+      flex: 0 0 auto;
+      width: 88px;
+      height: 88px;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f1f6fb;
+      box-shadow: 0 8px 18px rgba(17, 47, 83, 0.08);
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .thumb:hover,
+    .thumb:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(12, 90, 158, 0.35);
+      outline: none;
+    }
+
+    .thumb.active {
+      border-color: var(--blue);
+      box-shadow: 0 10px 22px rgba(12, 90, 158, 0.16);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .empty {
+      padding: 28px 16px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (min-width: 760px) {
+      .hero-head h1 { font-size: 26px; }
+      .frame { min-height: 520px; }
+      .thumb {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="LOGO.jpeg" alt="شعار الشركة" />
+        <div class="brand-text">
+          <strong>شركة الصدارة لتجارة السيارات</strong>
+          <span id="branchName">المعرض</span>
+        </div>
+      </div>
+      <a class="back" href="index.html">العودة</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-head">
+        <h1 id="title">المعرض</h1>
+        <p id="desc">عرض الصور بشكل متتابع مع صور مصغرة للتنقل السريع.</p>
+      </div>
+
+      <div class="viewer">
+        <div class="counter" id="counter">0 / 0</div>
+        <div class="frame" id="frame">
+          <img id="mainImage" alt="" />
+        </div>
+        <div class="controls">
+          <button class="btn secondary" id="prevBtn" type="button">السابق</button>
+          <button class="btn secondary" id="nextBtn" type="button">التالي</button>
+        </div>
+      </div>
+
+      <div class="thumbs" id="thumbs" aria-label="الصور المصغرة"></div>
+      <div class="empty" id="empty" hidden>لا توجد صور في هذا المعرض.</div>
+    </section>
+  </main>
+
+  <script>
+    const galleries = {
+      korea: {
+        title: "معرض فرع كوريا",
+        desc: "صور فرع كوريا كما هي داخل المجلد.",
+        branch: "كوريا",
+        images: [
+          "01-korea/01.jpeg",
+          "01-korea/02.jpeg",
+          "01-korea/03.jpeg",
+          "01-korea/04.jpeg",
+          "01-korea/05.jpeg",
+          "01-korea/06.jpeg",
+          "01-korea/07.jpeg",
+          "01-korea/08.jpeg",
+          "01-korea/09.jpeg",
+          "01-korea/10.jpeg",
+          "01-korea/11.jpeg",
+          "01-korea/12.jpeg",
+          "01-korea/13.jpeg",
+          "01-korea/14.jpeg",
+          "01-korea/15.jpeg",
+          "01-korea/16.jpeg",
+          "01-korea/17.jpeg",
+          "01-korea/18.jpeg",
+          "01-korea/19.jpeg",
+          "01-korea/20.jpeg",
+          "01-korea/21.jpeg",
+          "01-korea/22.jpeg",
+          "01-korea/23.jpeg",
+          "01-korea/24.jpeg",
+          "01-korea/25.jpeg",
+          "01-korea/26.jpeg",
+          "01-korea/27.jpeg",
+          "01-korea/28.jpeg",
+          "01-korea/29.jpeg",
+]
+      },
+      tajoura: {
+        title: "معرض فرع تاجوراء",
+        desc: "صور فرع تاجوراء مع عرض تلقائي وصور مصغرة.",
+        branch: "تاجوراء",
+        images: [
+          "02-tajoura/01.jpeg",
+          "02-tajoura/02.jpeg",
+          "02-tajoura/03.jpeg",
+          "02-tajoura/04.jpeg",
+          "02-tajoura/05.jpeg",
+          "02-tajoura/06.jpeg",
+          "02-tajoura/07.jpeg",
+          "02-tajoura/08.jpeg",
+          "02-tajoura/09.jpeg",
+          "02-tajoura/10.jpeg",
+          "02-tajoura/11.jpeg",
+          "02-tajoura/12.jpeg",
+]
+      },
+      misrata: {
+        title: "معرض فرع مصراته",
+        desc: "صور فرع مصراته مع تنقل سريع بين الصور.",
+        branch: "مصراته",
+        images: [
+          "03-misrata/01.jpeg",
+          "03-misrata/02.jpeg",
+          "03-misrata/03.jpeg",
+          "03-misrata/04.jpeg",
+          "03-misrata/05.jpeg",
+          "03-misrata/06.jpeg",
+          "03-misrata/07.jpeg",
+          "03-misrata/08.jpeg",
+          "03-misrata/09.jpeg",
+          "03-misrata/10.jpeg",
+          "03-misrata/11.jpeg",
+          "03-misrata/12.jpeg",
+          "03-misrata/13.jpeg",
+          "03-misrata/14.jpeg",
+          "03-misrata/15.jpeg",
+          "03-misrata/16.jpeg",
+          "03-misrata/17.jpeg",
+          "03-misrata/18.jpeg",
+          "03-misrata/19.jpeg",
+]
+      },
+      comp: {
+        title: "رخصة الشركة في كوريا",
+        desc: "الصورة الموجودة داخل مجلد comp.",
+        branch: "كوريا",
+        images: [
+          "04-comp/01.jpeg",
+]
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    const setName = params.get("set") || "korea";
+    const gallery = galleries[setName] || galleries.korea;
+
+    const titleEl = document.getElementById("title");
+    const descEl = document.getElementById("desc");
+    const branchEl = document.getElementById("branchName");
+    const mainImage = document.getElementById("mainImage");
+    const counter = document.getElementById("counter");
+    const thumbs = document.getElementById("thumbs");
+    const empty = document.getElementById("empty");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    titleEl.textContent = gallery.title;
+    descEl.textContent = gallery.desc;
+    branchEl.textContent = gallery.branch;
+
+    let index = 0;
+    function imageSrc(path) {
+      return encodeURI(path);
+    }
+
+    function renderThumbs() {
+      thumbs.innerHTML = "";
+      gallery.images.forEach((path, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "thumb" + (i === index ? " active" : "");
+        btn.setAttribute("aria-label", `عرض الصورة ${i + 1}`);
+        btn.innerHTML = `<img src="${imageSrc(path)}" alt="صورة ${i + 1} من ${gallery.title}" loading="lazy">`;
+        btn.addEventListener("click", () => {
+          index = i;
+          showCurrent(true);
+        });
+        thumbs.appendChild(btn);
+      });
+    }
+
+    function syncActiveThumb() {
+      Array.from(thumbs.children).forEach((child, i) => {
+        child.classList.toggle("active", i === index);
+      });
+    }
+
+    function showCurrent(scrollThumb = false) {
+      if (!gallery.images.length) {
+        empty.hidden = false;
+        mainImage.style.display = "none";
+        counter.textContent = "0 / 0";
+        thumbs.innerHTML = "";
+        return;
+      }
+
+      empty.hidden = true;
+      const path = gallery.images[index];
+      mainImage.src = imageSrc(path);
+      mainImage.alt = `${gallery.title} - صورة ${index + 1}`;
+      counter.textContent = `${index + 1} / ${gallery.images.length}`;
+      syncActiveThumb();
+
+      if (scrollThumb) {
+        const activeThumb = thumbs.children[index];
+        activeThumb?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+
+    function next() {
+      index = (index + 1) % gallery.images.length;
+      showCurrent(true);
+    }
+
+    function prev() {
+      index = (index - 1 + gallery.images.length) % gallery.images.length;
+      showCurrent(true);
+    }
+
+    prevBtn.addEventListener("click", () => {
+      prev();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      next();
+    });
+
+    mainImage.addEventListener("click", () => {
+      const src = mainImage.src;
+      if (src) window.open(src, "_blank", "noopener,noreferrer");
+    });
+
+    renderThumbs();
+    showCurrent(false);
+  </script>
+</body>
+</html>
+
