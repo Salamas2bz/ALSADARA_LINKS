@@ -596,6 +596,61 @@
         max-width: 540px;
       }
     }
+
+    @media (max-width: 759px) {
+      .accordion-body {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .meta-row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 6px;
+      }
+
+      .meta-row strong {
+        white-space: normal;
+      }
+
+      .meta-row span {
+        width: 100%;
+        text-align: center;
+      }
+
+      .phone-row {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .phone-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .phone-item {
+        flex: 0 0 auto;
+      }
+
+      .phone-stack {
+        align-items: center;
+      }
+
+      #tagura-gallery .accordion-actions {
+        gap: 8px;
+      }
+
+      #tagura-gallery .accordion-actions a {
+        flex: 1 1 140px;
+        max-width: 180px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -770,5 +825,4 @@
   </script>
 </body>
 </html>
-
 
