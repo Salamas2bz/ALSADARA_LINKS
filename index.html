@@ -384,6 +384,43 @@
       display: block;
     }
 
+    .phone-stack {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      vertical-align: top;
+    }
+
+    .phone-stack a {
+      white-space: nowrap;
+    }
+
+    .maps-under {
+      display: block;
+      font-size: 12px;
+      line-height: 1.2;
+      color: var(--blue-2);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .phone-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      direction: ltr;
+    }
+
+    .phone-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      white-space: nowrap;
+    }
+
     .accordion-actions {
       display: flex;
       gap: 10px;
@@ -392,6 +429,10 @@
     }
 
     #misrata-gallery .accordion-actions {
+      justify-content: center;
+    }
+
+    #tagura-gallery .accordion-actions {
       justify-content: center;
     }
 
@@ -626,15 +667,16 @@
               </div>
               <div class="meta-row">
                 <strong>رقم الهاتف</strong>
-                <span>
-                  <a href="https://wa.me/218945888088" target="_blank" rel="noopener noreferrer">0945888088</a>
-                  &nbsp;|&nbsp;
-                  <a href="https://wa.me/218944999099" target="_blank" rel="noopener noreferrer">0944999099</a>
+                <span class="phone-row">
+                  <span class="phone-item"><a href="https://wa.me/218944777077" target="_blank" rel="noopener noreferrer">0944777077</a></span>
+                  <span class="phone-item">
+                    <span class="phone-stack">
+                      <a href="https://wa.me/218945888088" target="_blank" rel="noopener noreferrer">0945888088</a>
+                      <a class="maps-under" href="https://maps.app.goo.gl/fPiiJLHnTQx3fECz9" target="_blank" rel="noopener noreferrer">فتح الخرائط</a>
+                    </span>
+                  </span>
+                  <span class="phone-item"><a href="https://wa.me/218944999099" target="_blank" rel="noopener noreferrer">0944999099</a></span>
                 </span>
-              </div>
-              <div class="meta-row">
-                <strong>الموقع على الخرائط</strong>
-                <span><a href="https://maps.app.goo.gl/fPiiJLHnTQx3fECz9" target="_blank" rel="noopener noreferrer">فتح الخرائط</a></span>
               </div>
             </div>
             <div class="accordion-actions">
